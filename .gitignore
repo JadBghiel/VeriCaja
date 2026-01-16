@@ -1,0 +1,107 @@
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+pip-selfcheck.json
+.python-version
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+**/venv/
+**/.venv/
+**/env/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# QR Code Outputs
+qr_codes/*.png
+!qr_codes/.gitkeep
+
+# Node.js / Frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.vite/
+
+# IDE / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.cache
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Tests
+tests/
+**/tests/
+**/test_*.py
+**/*_test.py
+
+# Markdown (allow only root README)
+*.md
+!/README.md
+!/DATABASE_EXPLAINED.md
