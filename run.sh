@@ -28,13 +28,26 @@ if [ ! -d "$FRONTEND_DIR" ]; then
     exit 1
 fi
 
+# find virtual environment (check both .venv and venv in root and backend)
+VENV_DIR=""
+if [ -d "$PROJECT_ROOT/.venv" ]; then
+    VENV_DIR="$PROJECT_ROOT/.venv"
+elif [ -d "$PROJECT_ROOT/venv" ]; then
+    VENV_DIR="$PROJECT_ROOT/venv"
+elif [ -d "$BACKEND_DIR/.venv" ]; then
+    VENV_DIR="$BACKEND_DIR/.venv"
+elif [ -d "$BACKEND_DIR/venv" ]; then
+    VENV_DIR="$BACKEND_DIR/venv"
+fi
+
 # install backend dependencies if needed
-if [ ! -d "$BACKEND_DIR/venv" ]; then
-    echo -e "${YELLOW}Setting up Python virtual environment...${NC}"
-    cd "$BACKEND_DIR"
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
+if [ -z "$VENV_DIR" ]; then
+    echo -e "${YELLOW}No virtual environment found. Setting up Python virtual environment at root...${NC}"
+    VENV_DIR="$PROJECT_ROOT/.venv"
+    cd "$PROJECT_ROOT"
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r "$BACKEND_DIR/requirements.txt"
     deactivate
 fi
 
@@ -48,7 +61,7 @@ fi
 # start backend server
 echo -e "${GREEN}Starting backend server...${NC}"
 cd "$BACKEND_DIR"
-source venv/bin/activate
+source "$VENV_DIR/bin/activate"
 uvicorn main:app --reload --host 0.0.0.0 --port 8000 &
 BACKEND_PID=$!
 
