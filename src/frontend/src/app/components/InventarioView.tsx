@@ -1,6 +1,7 @@
 import { Coffee, Milk, Wheat, Package, Plus, RefreshCw, XCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { toast } from '@/utils/toast';
+import { api } from '@/services/api';
 
 interface InventoryItem {
   id: number;
@@ -28,9 +29,7 @@ export function InventarioView() {
   const fetchInventory = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/inventory/');
-      if (!response.ok) throw new Error('Failed to fetch inventory');
-      const data = await response.json();
+      const data = await api.inventory.getInventory();
       setInventoryItems(data);
     } catch (error) {
       console.error('Error fetching inventory:', error);
@@ -50,17 +49,7 @@ export function InventarioView() {
     if (!selectedItem || restockQuantity <= 0) return;
 
     try {
-      const response = await fetch(`http://localhost:8000/inventory/${selectedItem.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ quantity: restockQuantity }),
-      });
-
-      if (!response.ok) throw new Error('Failed to update stock');
-
-      const result = await response.json();
+      await api.inventory.updateStock(selectedItem.id, restockQuantity);
       toast.success(`✅ Stock actualizado: ${selectedItem.name} (+${restockQuantity})`);
       
       // Refresh inventory
