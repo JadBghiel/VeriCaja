@@ -103,6 +103,195 @@ npm run dev
 
 ---
 
+## Managing the Database
+
+### Insert, View & Delete Data Manually
+
+You can add, view, or remove financial data directly from the database. Here's how:
+
+#### Example 1: INSERT Income (Ingresos)
+
+**Method 1: Direct Terminal Command**
+```bash
+cd /home/jadbghiel/EPITECH/my projects/veriCaja/src/backend
+sqlite3 vericaja.db "INSERT INTO income (order_id, amount, source, date) VALUES (1, 150.50, 'sales', '2026-03-05 14:30:00');"
+```
+
+**Method 2: Interactive SQLite Shell**
+```bash
+cd /home/jadbghiel/EPITECH/my projects/veriCaja/src/backend
+sqlite3 vericaja.db
+```
+Then type:
+```sql
+INSERT INTO income (order_id, amount, source, date) 
+VALUES (1, 150.50, 'sales', '2026-03-05 14:30:00');
+```
+Press Enter, then type `.quit` to exit.
+
+---
+
+#### Example 2: INSERT Expense (Gastos)
+
+**Method 1: Direct Terminal Command**
+```bash
+sqlite3 vericaja.db "INSERT INTO expenses (description, amount, category, date, month) VALUES ('Monthly Rent', 1200.00, 'Rent', '2026-03-01', '2026-03');"
+```
+
+**Method 2: Interactive SQLite Shell**
+```bash
+sqlite3 vericaja.db
+```
+Then type:
+```sql
+INSERT INTO expenses (description, amount, category, date, month) 
+VALUES ('Monthly Rent', 1200.00, 'Rent', '2026-03-01', '2026-03');
+```
+
+---
+
+#### Example 3: VIEW Income Data
+
+**Method 1: Direct Terminal Command**
+```bash
+# View all income
+sqlite3 vericaja.db "SELECT id, amount, source, date FROM income;"
+
+# View income from March 2026 only
+sqlite3 vericaja.db "SELECT amount, source, date FROM income WHERE date LIKE '2026-03%';"
+
+# View total income sum
+sqlite3 vericaja.db "SELECT SUM(amount) as total_income FROM income WHERE date LIKE '2026-03%';"
+```
+
+**Method 2: Interactive SQLite Shell**
+```bash
+sqlite3 vericaja.db
+```
+Then type:
+```sql
+-- View all income records
+SELECT id, amount, source, date FROM income;
+
+-- View income from March 2026
+SELECT amount, source, date FROM income WHERE date LIKE '2026-03%';
+
+-- View total income with formatting
+SELECT SUM(amount) as total_income FROM income WHERE date LIKE '2026-03%';
+```
+
+---
+
+#### Example 4: VIEW Expense Data
+
+**Method 1: Direct Terminal Command**
+```bash
+# View all expenses
+sqlite3 vericaja.db "SELECT id, description, amount, category, date FROM expenses;"
+
+# View expenses from March 2026 only
+sqlite3 vericaja.db "SELECT description, amount, category, date FROM expenses WHERE month = '2026-03';"
+
+# View total expenses sum
+sqlite3 vericaja.db "SELECT SUM(amount) as total_expenses FROM expenses WHERE month = '2026-03';"
+```
+
+**Method 2: Interactive SQLite Shell**
+```bash
+sqlite3 vericaja.db
+```
+Then type:
+```sql
+-- View all expense records
+SELECT id, description, amount, category, date FROM expenses;
+
+-- View expenses from March 2026
+SELECT description, amount, category, date FROM expenses WHERE month = '2026-03';
+
+-- View total expenses with formatting
+SELECT SUM(amount) as total_expenses FROM expenses WHERE month = '2026-03';
+```
+
+---
+
+#### Example 5: DELETE Income Record
+
+**Method 1: Direct Terminal Command**
+```bash
+# Delete specific income record (ID = 5)
+sqlite3 vericaja.db "DELETE FROM income WHERE id = 5;"
+
+# Delete all income from a specific date
+sqlite3 vericaja.db "DELETE FROM income WHERE date LIKE '2026-03-05%';"
+```
+
+**Method 2: Interactive SQLite Shell**
+```bash
+sqlite3 vericaja.db
+```
+Then type:
+```sql
+-- Delete specific income record by ID
+DELETE FROM income WHERE id = 5;
+
+-- Delete all income from a specific date
+DELETE FROM income WHERE date LIKE '2026-03-05%';
+```
+
+---
+
+#### Example 6: DELETE Expense Record
+
+**Method 1: Direct Terminal Command**
+```bash
+# Delete specific expense record (ID = 3)
+sqlite3 vericaja.db "DELETE FROM expenses WHERE id = 3;"
+
+# Delete all expenses from March 2026
+sqlite3 vericaja.db "DELETE FROM expenses WHERE month = '2026-03';"
+```
+
+**Method 2: Interactive SQLite Shell**
+```bash
+sqlite3 vericaja.db
+```
+Then type:
+```sql
+-- Delete specific expense record by ID
+DELETE FROM expenses WHERE id = 3;
+
+-- Delete all expenses from March 2026
+DELETE FROM expenses WHERE month = '2026-03';
+```
+
+---
+
+### Common Database Operations
+
+**Find a valid order_id for income:**
+```bash
+sqlite3 vericaja.db "SELECT id, order_number FROM orders LIMIT 5;"
+```
+
+**Check what's in your database:**
+```bash
+sqlite3 vericaja.db "SELECT COUNT(*) as products FROM products; SELECT COUNT(*) as orders FROM orders; SELECT COUNT(*) as incomes FROM income; SELECT COUNT(*) as expenses FROM expenses;"
+```
+
+**Backup your database:**
+```bash
+cp /home/jadbghiel/EPITECH/my projects/veriCaja/src/backend/vericaja.db /home/jadbghiel/EPITECH/my projects/veriCaja/src/backend/vericaja.db.backup
+```
+
+**Reset database with fresh seed data:**
+```bash
+cd /home/jadbghiel/EPITECH/my projects/veriCaja/src/backend
+rm -f vericaja.db
+python -c "from seed_db import seed_database; seed_database()"
+```
+
+---
+
 ## Market Fit & Use Cases
 
 ### Who Is VeriCaja For?
