@@ -1,21 +1,30 @@
 <div align="center">
-  <img src="documentation (day 1,2)/VeriCaja Full Logo Name.png" alt="VeriCaja Logo" width="600">
+  <img src="documentation/VeriCaja%20Full%20Logo%20Name.png" alt="VeriCaja Logo" width="600">
 </div>
 
 # VeriCaja - Audit Proof Financial Engine for Spanish Autónomos
 
 **Immutable Ledger for Spanish SMBs**
 
+Four taps build a café order and one more verifies it: VeriCaja records the sale, chains its hash into the Verifactu ledger and shows the invoice QR code.
+
+<p align="center">
+  <img src="documentation/media/pos-sale.gif" alt="Point of sale demo: a cappuccino, 2 lattes and a pan con tomate are added to the order, then Verificar & Cerrar Venta shows the verified sale with its invoice QR code" width="100%">
+</p>
+
+<p align="center"><a href="documentation/media/pos-sale.mp4">Watch it in full quality (1080p, 60fps)</a></p>
+
 ---
 
 ## Table of Contents
 
 1. [Product Overview](#product-overview)
-2. [Getting Started](#getting-started)
-3. [Market Fit & Use Cases](#market-fit--use-cases)
-4. [Key Features](#key-features)
-5. [Technical Explanation](#technical-explanation)
-6. [Project Structure](#project-structure)
+2. [Screenshots](#screenshots)
+3. [Getting Started](#getting-started)
+4. [Market Fit & Use Cases](#market-fit--use-cases)
+5. [Key Features](#key-features)
+6. [Technical Explanation](#technical-explanation)
+7. [Project Structure](#project-structure)
 
 ---
 
@@ -42,6 +51,26 @@ One integrated platform that:
 - ✅ **Logs expenses** with categorization
 - ✅ **Provides one-click data export** for accountants
 - ✅ **Creates immutable ledger** that resists fraud and audits
+
+---
+
+## Screenshots
+
+The screens below show mock data: one month at a small café, about 35 sales a day.
+
+**Dashboard**: income, expenses, net profit and days of cash for the month, the last 30 days of income against expenses, and quick actions.
+
+![Dashboard with four metric cards, the income vs expenses chart and quick actions](documentation/media/dashboard.png)
+
+| Point of sale: order in progress | Sale verified, with its invoice QR code |
+|---|---|
+| ![Order with a cappuccino, 2 espressos, a croissant and a pan con tomate, €12.80](documentation/media/pos-order.png) | ![Green confirmation panel, Venta Verificada, with the invoice QR code](documentation/media/pos-verified.png) |
+| **Business health**: days of cash left at the current burn rate | **Inventory**: restock a product, preview the new level |
+| ![Cash runway gauge showing 62 days, until 21 December 2026](documentation/media/health.png) | ![Restock modal for croissants, from 10 to 30 units](documentation/media/inventory-restock.png) |
+
+**Audit log**: one click checks every invoice's hash link to the previous one.
+
+![Integrity verified, 1045 invoices with an intact chain, and the Modelo 303 and 130 cards](documentation/media/audit-verified.png)
 
 ---
 
