@@ -16,7 +16,8 @@ export function AuditDefenseView() {
       const data = await api.compliance.verifyLedger();
       setLedgerData(data);
       setVerificationComplete(true);
-      if (data.status === 'SECURE') {
+      // backend sends lowercase "secure" or "breach_detected"
+      if (data.status === 'secure') {
         toast.success('Integridad verificada correctamente');
       } else {
         toast.error('Se detectaron problemas en la cadena');
@@ -123,7 +124,8 @@ export function AuditDefenseView() {
         </div>
 
         {/* Verification Success */}
-        {verificationComplete && (
+        {/* green only if the chain is intact, a breach shows in the ledger list below */}
+        {verificationComplete && ledgerData?.status === 'secure' && (
           <div className="mt-4 bg-[#10B981]/10 border border-[#10B981] rounded-lg p-4 flex items-center gap-3">
             <CheckCircle2 className="w-6 h-6 text-[#10B981]" />
             <div>
@@ -200,14 +202,14 @@ export function AuditDefenseView() {
           {ledgerData ? (
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                {ledgerData.status === 'SECURE' ? (
+                {ledgerData.status === 'secure' ? (
                   <CheckCircle2 className="w-6 h-6 text-green-600" />
                 ) : (
                   <AlertTriangle className="w-6 h-6 text-red-600" />
                 )}
                 <div>
                   <p className="font-semibold text-foreground">
-                    {ledgerData.status === 'SECURE' ? 'Cadena Segura' : 'Problemas Detectados'}
+                    {ledgerData.status === 'secure' ? 'Cadena Segura' : 'Problemas Detectados'}
                   </p>
                   <p className="text-sm text-muted-foreground">
                     {ledgerData.verified_chain} de {ledgerData.total_entries} entradas verificadas
