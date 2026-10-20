@@ -1,7 +1,3 @@
-<div align="center">
-  <img src="documentation/VeriCaja%20Full%20Logo%20Name.png" alt="VeriCaja Logo" width="600">
-</div>
-
 # VeriCaja - Audit Proof Financial Engine for Spanish Autónomos
 
 **Immutable Ledger for Spanish SMBs**
@@ -11,8 +7,6 @@ Four taps build a café order and one more verifies it: VeriCaja records the sal
 <p align="center">
   <img src="documentation/media/pos-sale.gif" alt="Point of sale demo: a cappuccino, 2 lattes and a pan con tomate are added to the order, then Verificar & Cerrar Venta shows the verified sale with its invoice QR code" width="100%">
 </p>
-
-<p align="center"><a href="documentation/media/pos-sale.mp4">Watch it in full quality (1080p, 60fps)</a></p>
 
 ---
 
